@@ -1,17 +1,17 @@
 <script>
 import Vue from 'vue';
-import { LemonComponentsSample } from '@/entry';
+import { MenuSlide } from '@/entry';
 
 export default Vue.extend({
   name: 'ServeDev',
   components: {
-    LemonComponentsSample,
+    MenuSlide
   }
 });
 </script>
 
 <template>
   <div id="app">
-    <lemon-components-sample />
+    <menu-slide />
   </div>
 </template>

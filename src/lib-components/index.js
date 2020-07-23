@@ -1,2 +1,1 @@
-/* eslint-disable import/prefer-default-export */
-export { default as LemonComponentsSample } from './lemon-components-sample.vue';
+export { default as MenuSlide } from './MenuSlide.vue';
