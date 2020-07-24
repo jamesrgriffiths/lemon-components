@@ -73,7 +73,7 @@ var script = {
   props: {
     links: {
       default: function _default() {
-        return ['a', 'test', 'is', 'this'];
+        return [];
       }
     },
     side: {
@@ -230,7 +230,7 @@ var __vue_staticRenderFns__ = [];
 
 var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
   if (!inject) return;
-  inject("data-v-3c1b4367_0", {
+  inject("data-v-6741bde0_0", {
     source: ".accent-line{display:block;height:0;border-bottom:3px solid rgba(255,163,66,.9)}.ms-menu-open{display:inline-block;height:31px;cursor:pointer}.ms-menu-button-open-line,.ms-menu-button-open-line1,.ms-menu-button-open-line2,.ms-menu-button-open-line3{width:31px;height:5px;border-radius:5px}.ms-menu-button-open-line1{background-color:#1080dd;transform:translateY(4px)}:hover>.ms-menu-button-open-line1{background-color:#0979d6}.ms-menu-button-open-line2{background-color:inherit;transform:translateY(9px)}.ms-menu-button-open-line3{background-color:inherit;transform:translateY(9px)}.ms-menu-close{display:block;height:51px;padding:10px;background-color:#fafdfd;cursor:pointer}.ms-menu-button-close-line,.ms-menu-button-close-line1,.ms-menu-button-close-line2{width:31px;height:5px;border-radius:5px}.ms-menu-button-close-line1{background-color:#1080dd;transform:rotate(45deg);margin:15.5px auto}:hover>.ms-menu-button-close-line1{background-color:#0979d6}.ms-menu-button-close-line2{background-color:inherit;transform:rotate(90deg)}.ms-menu{position:fixed;z-index:100;top:0;height:100vh;width:300px;background-color:#f5f7f9;box-shadow:0 4px 8px 0 rgba(0,0,0,.2)}.ms-menu-right{right:-300px;transition:right .4s linear}.ms-menu-right-visible{right:0}.ms-menu-left{left:-300px;transition:left .4s linear}.ms-menu-left-visible{left:0}.ms-menu-item{display:block;height:50px;padding:5px 15px;text-decoration:none;text-transform:capitalize;line-height:50px;color:#00050a}.ms-menu-item:hover{background-color:#fafdfd;border-radius:5px;box-shadow:0 4px 8px 0 rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){.ms-menu-button-open-line1{background-color:#fafbff}:hover>.ms-menu-button-open-line1{background-color:#e5e6ea}.ms-menu-button-close-line1{background-color:#fafbff}:hover>.ms-menu-button-close-line1{background-color:#e5e6ea}.ms-menu-close{background-color:#292a2d}.ms-menu{background-color:#343a40}.ms-menu-item{color:#fffff5}.ms-menu-item:hover{background-color:#292a2d}}",
     map: undefined,
     media: undefined
@@ -242,7 +242,7 @@ var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-3c1b4367";
+var __vue_module_identifier__ = "data-v-6741bde0";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

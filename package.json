@@ -1,15 +1,15 @@
 {
   "name": "lemon-components",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "",
   "author": "James Griffiths",
-  "main": "dist/lemon-components.ssr.js",
+  "main": "src/entry.js",
   "browser": "dist/lemon-components.esm.js",
   "module": "dist/lemon-components.esm.js",
   "unpkg": "dist/lemon-components.min.js",
   "files": [
     "dist/*",
-    "src/**/*.vue"
+    "src/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",

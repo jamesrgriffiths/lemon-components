@@ -18,7 +18,7 @@
 <script>
   export default {
     props: {
-      links: { default: () => ['a','test','is','this'] },
+      links: { default: () => [] },
       side: {
         default: "left",
         validator(x) { return ["left", "right"].indexOf(x) !== -1; }
