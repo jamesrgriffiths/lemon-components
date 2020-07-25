@@ -1,15 +1,22 @@
 <template>
 
   <div>
-    <div class="ms-menu-open" @click="showMenu();">
-      <div class="ms-menu-button-open-line1"><div class="ms-menu-button-open-line2"><div class="ms-menu-button-open-line3"></div></div></div>
+    <div class="lemon-button" @click="toggleMenu();">
+      <div class="lemon-button-hamburger-line1"><div class="lemon-button-hamburger-line2"><div class="lemon-button-hamburger-line3"></div></div></div>
     </div>
     <div class="ms-menu" :class="visible ? 'ms-menu-'+side+' ms-menu-'+side+'-visible' : 'ms-menu-'+side">
-      <div class="ms-menu-close" @click="hideMenu()">
-        <div class="ms-menu-button-close-line1"><div class="ms-menu-button-close-line2"></div></div>
+      <div class="ms-menu-header">
+        <div class="lemon-button" @click="toggleMenu()">
+          <div class="lemon-button-x-line1"><div class="lemon-button-x-line2"></div></div>
+        </div>
       </div>
-      <div class="accent-line"></div>
-      <a class="ms-menu-item" v-for="link in links" :key="link" :href="link">{{link}}</a>
+      <div class="lemon-accent-line"></div>
+      <a class="ms-menu-item" :class="link.display ? '' : 'capitalize'"
+        v-for="link in links"
+        :key="link.value ? link.value : link"
+        :href="link.value ? link.value : link">
+        {{link.display ? link.display : linkDisplay(link)}}
+      </a>
     </div>
   </div>
 
@@ -33,18 +40,14 @@
 
     methods: {
 
-      showMenu() {
-        this.visible = true;
+      linkDisplay(link) {
+        return link.replace("_"," ");
       },
 
-      hideMenu() {
-        this.visible = false;
+      toggleMenu() {
+        this.visible = !this.visible;
       }
+
     }
   };
 </script>
-
-<style lang="scss">
-  @import "../sass/_main.scss";
-  @import "../sass/_menu_slide.scss";
-</style>

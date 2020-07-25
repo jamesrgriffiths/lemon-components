@@ -1,0 +1,56 @@
+.ms-menu {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  height: 100vh;
+  width: $ms-menu-width;
+  background-color: $lemon-bg-secondary;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.ms-menu-header {
+  padding: 10px;
+}
+
+.ms-menu-item {
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  margin: 5px;
+  padding: 5px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 20px;
+  color: $lemon-secondary;
+}
+.ms-menu-item:hover {
+  background-color: lighten($lemon-bg-secondary,5);
+  border-radius: 5px;
+  box-shadow: 0 0 4px 1px rgba(5,5,5,0.3);
+}
+
+.ms-menu-left {
+  left: -$ms-menu-width;
+  transition: left 0.4s linear
+}
+.ms-menu-left-visible { left: 0; }
+.ms-menu-left > .ms-menu-header { text-align: left; }
+
+.ms-menu-right {
+  right: -$ms-menu-width;
+  transition: right 0.4s linear;
+}
+.ms-menu-right-visible { right: 0; }
+.ms-menu-right > .ms-menu-header { text-align: right; }
+
+@media(prefers-color-scheme: dark) {
+  .ms-menu {
+    background-color: $lemon-bg-secondary-dark;
+  }
+  .ms-menu-item {
+    color: $lemon-primary-dark;
+  }
+  .ms-menu-item:hover {
+    background-color: lighten($lemon-bg-secondary-dark,5);
+  }
+}

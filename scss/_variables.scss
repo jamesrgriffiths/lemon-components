@@ -1,0 +1,18 @@
+// Colors
+$lemon-primary:                 #1080DD !default;
+$lemon-secondary:               #4A4B4D !default;
+$lemon-accent:                  #FF9B42 !default;
+$lemon-bg-primary:              #FAFDFD !default;
+$lemon-bg-secondary:            #F5F7F9 !default;
+
+$lemon-primary-dark:            #FAFBFF !default;
+$lemon-secondary-dark:          #A9ABAD !default;
+$lemon-bg-primary-dark:         #292A2D !default;
+$lemon-bg-secondary-dark:       #343A40 !default;
+
+// Sizing
+$lemon-graphic-button-size:     35px    !default;
+$lemon-graphic-button-features: 5px     !default;
+
+// MenuSlide
+$ms-menu-width:                 300px   !default; // For compatability with small devices don't set this above 320px, or use a percentage.

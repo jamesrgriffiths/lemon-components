@@ -1,1 +1,1 @@
-export { default as MenuSlide } from './MenuSlide.vue';
+export { default as LemonMenuSlide } from './MenuSlide.vue';

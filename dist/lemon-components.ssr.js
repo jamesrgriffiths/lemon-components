@@ -69,6 +69,13 @@ function _nonIterableRest() {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var script = {
   props: {
     links: {
@@ -89,11 +96,11 @@ var script = {
     };
   },
   methods: {
-    showMenu: function showMenu() {
-      this.visible = true;
+    linkDisplay: function linkDisplay(link) {
+      return link.replace("_", " ");
     },
-    hideMenu: function hideMenu() {
-      this.visible = false;
+    toggleMenu: function toggleMenu() {
+      this.visible = !this.visible;
     }
   }
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -169,46 +176,6 @@ var script = {
         }
     }
     return script;
-}function createInjectorSSR(context) {
-    if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__;
-    }
-    if (!context)
-        return () => { };
-    if (!('styles' in context)) {
-        context._styles = context._styles || {};
-        Object.defineProperty(context, 'styles', {
-            enumerable: true,
-            get: () => context._renderStyles(context._styles)
-        });
-        context._renderStyles = context._renderStyles || renderStyles;
-    }
-    return (id, style) => addStyle(id, style, context);
-}
-function addStyle(id, css, context) {
-    const group =  css.media || 'default' ;
-    const style = context._styles[group] || (context._styles[group] = { ids: [], css: '' });
-    if (!style.ids.includes(id)) {
-        style.media = css.media;
-        style.ids.push(id);
-        let code = css.source;
-        style.css += code + '\n';
-    }
-}
-function renderStyles(styles) {
-    let css = '';
-    for (const key in styles) {
-        const style = styles[key];
-        css +=
-            '<style data-vue-ssr-id="' +
-                Array.from(style.ids).join(' ') +
-                '"' +
-                (style.media ? ' media="' + style.media + '"' : '') +
-                '>' +
-                style.css +
-                '</style>';
-    }
-    return css;
 }/* script */
 var __vue_script__ = script;
 /* template */
@@ -220,38 +187,34 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', [_vm._ssrNode("<div class=\"ms-menu-open\"><div class=\"ms-menu-button-open-line1\"><div class=\"ms-menu-button-open-line2\"><div class=\"ms-menu-button-open-line3\"></div></div></div></div> <div" + _vm._ssrClass("ms-menu", _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side) + "><div class=\"ms-menu-close\"><div class=\"ms-menu-button-close-line1\"><div class=\"ms-menu-button-close-line2\"></div></div></div> <div class=\"accent-line\"></div> " + _vm._ssrList(_vm.links, function (link) {
-    return "<a" + _vm._ssrAttr("href", link) + " class=\"ms-menu-item\">" + _vm._ssrEscape(_vm._s(link)) + "</a>";
+  return _c('div', [_vm._ssrNode("<div class=\"lemon-button\"><div class=\"lemon-button-hamburger-line1\"><div class=\"lemon-button-hamburger-line2\"><div class=\"lemon-button-hamburger-line3\"></div></div></div></div> <div" + _vm._ssrClass("ms-menu", _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side) + "><div class=\"ms-menu-header\"><div class=\"lemon-button\"><div class=\"lemon-button-x-line1\"><div class=\"lemon-button-x-line2\"></div></div></div></div> <div class=\"lemon-accent-line\"></div> " + _vm._ssrList(_vm.links, function (link) {
+    return "<a" + _vm._ssrAttr("href", link.value ? link.value : link) + _vm._ssrClass("ms-menu-item", link.display ? '' : 'capitalize') + ">" + _vm._ssrEscape("\n      " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n    ") + "</a>";
   }) + "</div>")]);
 };
 
 var __vue_staticRenderFns__ = [];
 /* style */
 
-var __vue_inject_styles__ = function __vue_inject_styles__(inject) {
-  if (!inject) return;
-  inject("data-v-6741bde0_0", {
-    source: ".accent-line{display:block;height:0;border-bottom:3px solid rgba(255,163,66,.9)}.ms-menu-open{display:inline-block;height:31px;cursor:pointer}.ms-menu-button-open-line,.ms-menu-button-open-line1,.ms-menu-button-open-line2,.ms-menu-button-open-line3{width:31px;height:5px;border-radius:5px}.ms-menu-button-open-line1{background-color:#1080dd;transform:translateY(4px)}:hover>.ms-menu-button-open-line1{background-color:#0979d6}.ms-menu-button-open-line2{background-color:inherit;transform:translateY(9px)}.ms-menu-button-open-line3{background-color:inherit;transform:translateY(9px)}.ms-menu-close{display:block;height:51px;padding:10px;background-color:#fafdfd;cursor:pointer}.ms-menu-button-close-line,.ms-menu-button-close-line1,.ms-menu-button-close-line2{width:31px;height:5px;border-radius:5px}.ms-menu-button-close-line1{background-color:#1080dd;transform:rotate(45deg);margin:15.5px auto}:hover>.ms-menu-button-close-line1{background-color:#0979d6}.ms-menu-button-close-line2{background-color:inherit;transform:rotate(90deg)}.ms-menu{position:fixed;z-index:100;top:0;height:100vh;width:300px;background-color:#f5f7f9;box-shadow:0 4px 8px 0 rgba(0,0,0,.2)}.ms-menu-right{right:-300px;transition:right .4s linear}.ms-menu-right-visible{right:0}.ms-menu-left{left:-300px;transition:left .4s linear}.ms-menu-left-visible{left:0}.ms-menu-item{display:block;height:50px;padding:5px 15px;text-decoration:none;text-transform:capitalize;line-height:50px;color:#00050a}.ms-menu-item:hover{background-color:#fafdfd;border-radius:5px;box-shadow:0 4px 8px 0 rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){.ms-menu-button-open-line1{background-color:#fafbff}:hover>.ms-menu-button-open-line1{background-color:#e5e6ea}.ms-menu-button-close-line1{background-color:#fafbff}:hover>.ms-menu-button-close-line1{background-color:#e5e6ea}.ms-menu-close{background-color:#292a2d}.ms-menu{background-color:#343a40}.ms-menu-item{color:#fffff5}.ms-menu-item:hover{background-color:#292a2d}}",
-    map: undefined,
-    media: undefined
-  });
-};
+var __vue_inject_styles__ = undefined;
 /* scoped */
-
 
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-6741bde0";
+var __vue_module_identifier__ = "data-v-66f26546";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
+/* style inject */
+
+/* style inject SSR */
+
 /* style inject shadow dom */
 
 var __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, createInjectorSSR, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,MenuSlide: __vue_component__});var install = function installLemonComponents(Vue) {
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);var components=/*#__PURE__*/Object.freeze({__proto__:null,LemonMenuSlide: __vue_component__});var install = function installLemonComponents(Vue) {
   if (install.installed) return;
   install.installed = true;
   Object.entries(components).forEach(function (_ref) {
@@ -284,4 +247,4 @@ var plugin = {
     GlobalVue.use(plugin);
   }
 } // Default export is library as a whole, registered via Vue.use()
-exports.MenuSlide=__vue_component__;exports.default=plugin;
+exports.LemonMenuSlide=__vue_component__;exports.default=plugin;

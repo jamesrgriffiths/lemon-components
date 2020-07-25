@@ -15,6 +15,13 @@
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var script = {
   props: {
     links: {
@@ -37,12 +44,12 @@ var script = {
   },
 
   methods: {
-    showMenu() {
-      this.visible = true;
+    linkDisplay(link) {
+      return link.replace("_", " ");
     },
 
-    hideMenu() {
-      this.visible = false;
+    toggleMenu() {
+      this.visible = !this.visible;
     }
 
   }
@@ -123,59 +130,6 @@ function normalizeComponent(template, style, script, scopeId, isFunctionalTempla
     return script;
 }
 
-const isOldIE = typeof navigator !== 'undefined' &&
-    /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-function createInjector(context) {
-    return (id, style) => addStyle(id, style);
-}
-let HEAD;
-const styles = {};
-function addStyle(id, css) {
-    const group = isOldIE ? css.media || 'default' : id;
-    const style = styles[group] || (styles[group] = { ids: new Set(), styles: [] });
-    if (!style.ids.has(id)) {
-        style.ids.add(id);
-        let code = css.source;
-        if (css.map) {
-            // https://developer.chrome.com/devtools/docs/javascript-debugging
-            // this makes source maps inside style tags work properly in Chrome
-            code += '\n/*# sourceURL=' + css.map.sources[0] + ' */';
-            // http://stackoverflow.com/a/26603875
-            code +=
-                '\n/*# sourceMappingURL=data:application/json;base64,' +
-                    btoa(unescape(encodeURIComponent(JSON.stringify(css.map)))) +
-                    ' */';
-        }
-        if (!style.element) {
-            style.element = document.createElement('style');
-            style.element.type = 'text/css';
-            if (css.media)
-                style.element.setAttribute('media', css.media);
-            if (HEAD === undefined) {
-                HEAD = document.head || document.getElementsByTagName('head')[0];
-            }
-            HEAD.appendChild(style.element);
-        }
-        if ('styleSheet' in style.element) {
-            style.styles.push(code);
-            style.element.styleSheet.cssText = style.styles
-                .filter(Boolean)
-                .join('\n');
-        }
-        else {
-            const index = style.ids.size - 1;
-            const textNode = document.createTextNode(code);
-            const nodes = style.element.childNodes;
-            if (nodes[index])
-                style.element.removeChild(nodes[index]);
-            if (nodes.length)
-                style.element.insertBefore(textNode, nodes[index]);
-            else
-                style.element.appendChild(textNode);
-        }
-    }
-}
-
 /* script */
 const __vue_script__ = script;
 /* template */
@@ -188,32 +142,35 @@ var __vue_render__ = function () {
   var _c = _vm._self._c || _h;
 
   return _c('div', [_c('div', {
-    staticClass: "ms-menu-open",
+    staticClass: "lemon-button",
     on: {
       "click": function ($event) {
-        return _vm.showMenu();
+        return _vm.toggleMenu();
       }
     }
   }, [_vm._m(0)]), _vm._v(" "), _c('div', {
     staticClass: "ms-menu",
     class: _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side
   }, [_c('div', {
-    staticClass: "ms-menu-close",
+    staticClass: "ms-menu-header"
+  }, [_c('div', {
+    staticClass: "lemon-button",
     on: {
       "click": function ($event) {
-        return _vm.hideMenu();
+        return _vm.toggleMenu();
       }
     }
-  }, [_vm._m(1)]), _vm._v(" "), _c('div', {
-    staticClass: "accent-line"
+  }, [_vm._m(1)])]), _vm._v(" "), _c('div', {
+    staticClass: "lemon-accent-line"
   }), _vm._v(" "), _vm._l(_vm.links, function (link) {
     return _c('a', {
-      key: link,
+      key: link.value ? link.value : link,
       staticClass: "ms-menu-item",
+      class: link.display ? '' : 'capitalize',
       attrs: {
-        "href": link
+        "href": link.value ? link.value : link
       }
-    }, [_vm._v(_vm._s(link))]);
+    }, [_vm._v("\n      " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n    ")]);
   })], 2)]);
 };
 
@@ -225,11 +182,11 @@ var __vue_staticRenderFns__ = [function () {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    staticClass: "ms-menu-button-open-line1"
+    staticClass: "lemon-button-hamburger-line1"
   }, [_c('div', {
-    staticClass: "ms-menu-button-open-line2"
+    staticClass: "lemon-button-hamburger-line2"
   }, [_c('div', {
-    staticClass: "ms-menu-button-open-line3"
+    staticClass: "lemon-button-hamburger-line3"
   })])]);
 }, function () {
   var _vm = this;
@@ -239,23 +196,15 @@ var __vue_staticRenderFns__ = [function () {
   var _c = _vm._self._c || _h;
 
   return _c('div', {
-    staticClass: "ms-menu-button-close-line1"
+    staticClass: "lemon-button-x-line1"
   }, [_c('div', {
-    staticClass: "ms-menu-button-close-line2"
+    staticClass: "lemon-button-x-line2"
   })]);
 }];
 /* style */
 
-const __vue_inject_styles__ = function (inject) {
-  if (!inject) return;
-  inject("data-v-6741bde0_0", {
-    source: ".accent-line{display:block;height:0;border-bottom:3px solid rgba(255,163,66,.9)}.ms-menu-open{display:inline-block;height:31px;cursor:pointer}.ms-menu-button-open-line,.ms-menu-button-open-line1,.ms-menu-button-open-line2,.ms-menu-button-open-line3{width:31px;height:5px;border-radius:5px}.ms-menu-button-open-line1{background-color:#1080dd;transform:translateY(4px)}:hover>.ms-menu-button-open-line1{background-color:#0979d6}.ms-menu-button-open-line2{background-color:inherit;transform:translateY(9px)}.ms-menu-button-open-line3{background-color:inherit;transform:translateY(9px)}.ms-menu-close{display:block;height:51px;padding:10px;background-color:#fafdfd;cursor:pointer}.ms-menu-button-close-line,.ms-menu-button-close-line1,.ms-menu-button-close-line2{width:31px;height:5px;border-radius:5px}.ms-menu-button-close-line1{background-color:#1080dd;transform:rotate(45deg);margin:15.5px auto}:hover>.ms-menu-button-close-line1{background-color:#0979d6}.ms-menu-button-close-line2{background-color:inherit;transform:rotate(90deg)}.ms-menu{position:fixed;z-index:100;top:0;height:100vh;width:300px;background-color:#f5f7f9;box-shadow:0 4px 8px 0 rgba(0,0,0,.2)}.ms-menu-right{right:-300px;transition:right .4s linear}.ms-menu-right-visible{right:0}.ms-menu-left{left:-300px;transition:left .4s linear}.ms-menu-left-visible{left:0}.ms-menu-item{display:block;height:50px;padding:5px 15px;text-decoration:none;text-transform:capitalize;line-height:50px;color:#00050a}.ms-menu-item:hover{background-color:#fafdfd;border-radius:5px;box-shadow:0 4px 8px 0 rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){.ms-menu-button-open-line1{background-color:#fafbff}:hover>.ms-menu-button-open-line1{background-color:#e5e6ea}.ms-menu-button-close-line1{background-color:#fafbff}:hover>.ms-menu-button-close-line1{background-color:#e5e6ea}.ms-menu-close{background-color:#292a2d}.ms-menu{background-color:#343a40}.ms-menu-item{color:#fffff5}.ms-menu-item:hover{background-color:#292a2d}}",
-    map: undefined,
-    media: undefined
-  });
-};
+const __vue_inject_styles__ = undefined;
 /* scoped */
-
 
 const __vue_scope_id__ = undefined;
 /* module identifier */
@@ -264,6 +213,8 @@ const __vue_module_identifier__ = undefined;
 /* functional template */
 
 const __vue_is_functional_template__ = false;
+/* style inject */
+
 /* style inject SSR */
 
 /* style inject shadow dom */
@@ -271,11 +222,11 @@ const __vue_is_functional_template__ = false;
 const __vue_component__ = /*#__PURE__*/normalizeComponent({
   render: __vue_render__,
   staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, createInjector, undefined, undefined);
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
 
 var components = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  MenuSlide: __vue_component__
+  LemonMenuSlide: __vue_component__
 });
 
 // Import vue components
@@ -294,4 +245,4 @@ const plugin = {
 }; // To auto-install on non-es builds, when vue is found
 
 export default plugin;
-export { __vue_component__ as MenuSlide };
+export { __vue_component__ as LemonMenuSlide };
