@@ -1,6 +1,6 @@
 {
   "name": "lemon-components",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "",
   "author": "James Griffiths",
   "main": "src/entry.js",
@@ -9,6 +9,7 @@
   "unpkg": "dist/lemon-components.min.js",
   "files": [
     "dist/*",
+    "scss/*",
     "src/*"
   ],
   "scripts": {
