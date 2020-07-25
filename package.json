@@ -1,15 +1,15 @@
 {
   "name": "lemon-components",
-  "version": "0.3.1",
+  "version": "0.3.3",
   "description": "",
   "author": "James Griffiths",
-  "main": "dist/lemon-components.ssr.js",
+  "main": "src/entry.js",
   "browser": "dist/lemon-components.esm.js",
   "module": "dist/lemon-components.esm.js",
   "unpkg": "dist/lemon-components.min.js",
   "files": [
     "dist/*",
-    "src/**/*.vue"
+    "src/*"
   ],
   "scripts": {
     "serve": "vue-cli-service serve dev/serve.js",
@@ -18,7 +18,10 @@
     "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
-  "dependencies": {},
+  "dependencies": {
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-env": "^7.9.5",

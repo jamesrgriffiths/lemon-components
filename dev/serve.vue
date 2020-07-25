@@ -1,17 +1,31 @@
 <script>
 import Vue from 'vue';
-import { LemonComponentsSample } from '@/entry';
+import { LemonMenuSlide } from '@/entry';
 
 export default Vue.extend({
   name: 'ServeDev',
   components: {
-    LemonComponentsSample,
+    LemonMenuSlide
   }
 });
 </script>
 
 <template>
   <div id="app">
-    <lemon-components-sample />
+    <lemon-menu-slide side="left" :links="[{'display': 'A IS hERe','value': 'a'},'user_access','logout']" />
   </div>
 </template>
+
+
+<style lang="scss">
+  @import "../scss/main.scss";
+
+  body {
+    background-color: $lemon-bg-primary;
+  }
+  @media(prefers-color-scheme: dark) {
+    body {
+      background-color: $lemon-bg-primary-dark;
+    }
+  }
+</style>
