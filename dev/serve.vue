@@ -12,10 +12,9 @@ export default Vue.extend({
 
 <template>
   <div id="app">
-    <lemon-menu-slide side="left" :links="[{'display': 'A IS hERe','value': 'a'},'user_access','logout']" />
+    <lemon-menu-slide side="left" buttonStyleHamburger="light" buttonStyleX="light" :links="[{'display': 'A IS hERe','value': 'a'},'user_access','logout']" />
   </div>
 </template>
-
 
 <style lang="scss">
   @import "../scss/main.scss";

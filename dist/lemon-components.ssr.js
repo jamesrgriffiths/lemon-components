@@ -76,6 +76,8 @@ function _nonIterableRest() {
 //
 //
 //
+//
+//
 var script = {
   props: {
     links: {
@@ -87,6 +89,18 @@ var script = {
       default: "left",
       validator: function validator(x) {
         return ["left", "right"].indexOf(x) !== -1;
+      }
+    },
+    buttonStyleHamburger: {
+      default: "auto",
+      validator: function validator(x) {
+        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
+      }
+    },
+    buttonStyleX: {
+      default: "auto",
+      validator: function validator(x) {
+        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
       }
     }
   },
@@ -187,7 +201,7 @@ var __vue_render__ = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', [_vm._ssrNode("<div class=\"lemon-button\"><div class=\"lemon-button-hamburger-line1\"><div class=\"lemon-button-hamburger-line2\"><div class=\"lemon-button-hamburger-line3\"></div></div></div></div> <div" + _vm._ssrClass("ms-menu", _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side) + "><div class=\"ms-menu-header\"><div class=\"lemon-button\"><div class=\"lemon-button-x-line1\"><div class=\"lemon-button-x-line2\"></div></div></div></div> <div class=\"lemon-accent-line\"></div> " + _vm._ssrList(_vm.links, function (link) {
+  return _c('div', [_vm._ssrNode("<div class=\"lemon-graphic-button\"><div" + _vm._ssrClass(null, 'lemon-graphic-button-' + _vm.buttonStyleHamburger + ' lemon-graphic-button-hamburger-line1') + "><div class=\"lemon-graphic-button-hamburger-line2\"><div class=\"lemon-graphic-button-hamburger-line3\"></div></div></div></div> <div" + _vm._ssrClass("ms-menu", _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side) + "><div class=\"ms-menu-header\"><div class=\"lemon-graphic-button\"><div" + _vm._ssrClass(null, 'lemon-graphic-button-' + _vm.buttonStyleX + ' lemon-graphic-button-x-line1') + "><div class=\"lemon-graphic-button-x-line2\"></div></div></div></div> <div class=\"lemon-accent-line\"></div> " + _vm._ssrList(_vm.links, function (link) {
     return "<a" + _vm._ssrAttr("href", link.value ? link.value : link) + _vm._ssrClass("ms-menu-item", link.display ? '' : 'capitalize') + ">" + _vm._ssrEscape("\n      " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n    ") + "</a>";
   }) + "</div>")]);
 };
@@ -201,7 +215,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-66f26546";
+var __vue_module_identifier__ = "data-v-5b7d290c";
 /* functional template */
 
 var __vue_is_functional_template__ = false;

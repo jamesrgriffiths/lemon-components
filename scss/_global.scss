@@ -1,59 +1,65 @@
-.capitalize {
-  text-transform: capitalize;
-}
-
 .lemon-accent-line {
   display: block;
   height: 0px;
   border-bottom: 3px solid $lemon-accent;
 }
 
-.lemon-button {
+.lemon-graphic-button {
   display: inline-block;
   height: $lemon-graphic-button-size;
   cursor: pointer;
 }
-.lemon-button-line {
+.lemon-graphic-button.capitalize {
+  text-transform: capitalize;
+}
+.lemon-graphic-button-line {
   width: $lemon-graphic-button-size;
   height: $lemon-graphic-button-features;
   border-radius: $lemon-graphic-button-features;
 }
-.lemon-button-line-color {
+
+.lemon-graphic-button-auto, .lemon-graphic-button-light {
   background-color: $lemon-primary;
   :hover > & { background-color: darken($lemon-primary,5) }
 }
+.lemon-graphic-button-invert, .lemon-graphic-button-dark {
+  background-color: $lemon-primary-dark;
+  :hover > & { background-color: darken($lemon-primary-dark,5) }
+}
 
-.lemon-button-hamburger-line1 {
-  @extend .lemon-button-line;
-  @extend .lemon-button-line-color;
+.lemon-graphic-button-hamburger-line1 {
+  @extend .lemon-graphic-button-line;
   transform: translateY(($lemon-graphic-button-size - ($lemon-graphic-button-features * 3)) / 4);
 }
-.lemon-button-hamburger-line2 {
-  @extend .lemon-button-line;
+.lemon-graphic-button-hamburger-line2 {
+  @extend .lemon-graphic-button-line;
   background-color: inherit;
   transform: translateY((($lemon-graphic-button-size - ($lemon-graphic-button-features * 3)) / 4) + $lemon-graphic-button-features);
 }
-.lemon-button-hamburger-line3 {
-  @extend .lemon-button-line;
+.lemon-graphic-button-hamburger-line3 {
+  @extend .lemon-graphic-button-line;
   background-color: inherit;
   transform: translateY((($lemon-graphic-button-size - ($lemon-graphic-button-features * 3)) / 4) + $lemon-graphic-button-features);
 }
 
-.lemon-button-x-line1 {
-  @extend .lemon-button-line;
-  @extend .lemon-button-line-color;
+.lemon-graphic-button-x-line1 {
+  @extend .lemon-graphic-button-line;
   transform: translateY($lemon-graphic-button-size/2) rotate(45deg);
 }
-.lemon-button-x-line2 {
-  @extend .lemon-button-line;
+.lemon-graphic-button-x-line2 {
+  @extend .lemon-graphic-button-line;
   background-color: inherit;
   transform: rotate(90deg);
 }
 
 // Dark Mode
 @media(prefers-color-scheme: dark) {
-  .lemon-button-line-color {
+  .lemon-graphic-button-auto {
     background-color: $lemon-primary-dark;
     :hover > & { background-color: darken($lemon-primary-dark,5) }
+  }
+  .lemon-graphic-button-invert {
+    background-color: $lemon-primary;
+    :hover > & { background-color: darken($lemon-primary,5) }
   }
 }
