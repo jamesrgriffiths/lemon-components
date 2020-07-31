@@ -24,53 +24,100 @@
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 var script = {
   props: {
-    links: {
+    data: {
       default: () => []
     },
-    side: {
-      default: "left",
+    limit: {
+      default: 10,
 
       validator(x) {
-        return ["left", "right"].indexOf(x) !== -1;
+        return x > 0;
       }
 
     },
-    buttonStyleHamburger: {
-      default: "auto",
-
-      validator(x) {
-        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
-      }
-
+    size: {
+      default: 200
     },
-    buttonStyleX: {
-      default: "auto",
-
-      validator(x) {
-        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
-      }
-
+    padding: {
+      default: 10
+    },
+    cutout: {
+      default: 0
     }
   },
 
   data() {
     return {
-      visible: false
+      box_size: 0
     };
   },
 
-  methods: {
-    linkDisplay(link) {
-      return link.replace("_", " ");
-    },
+  created() {
+    // Set the box size
+    this.box_size = parseInt(this.size) + parseInt(this.padding * 2); // Get the totals;
 
-    toggleMenu() {
-      this.visible = !this.visible;
+    var total = 0;
+    var other_total = 0;
+
+    for (var i = 0; i < this.data.length; i++) {
+      total += this.data[i].total;
+
+      if (i + 1 >= this.limit) {
+        other_total += this.data[i].total;
+      }
+    } // Remove and replace additional items with the other variable
+
+
+    while (this.data.length >= this.limit) {
+      this.data.pop();
     }
 
+    if (other_total > 0) {
+      this.data.push({
+        'name': 'Other',
+        'total': other_total
+      });
+    } // Set the sizing of each item
+
+
+    var radius = this.size / 2;
+    var radian_multiplier = 6.2831853;
+    var rotation = 0;
+
+    for (var i = 0; i < this.data.length; i++) {
+      var fraction = this.data[i].total / total;
+      var x = radius * Math.sin(fraction * radian_multiplier) + radius;
+      var y = fraction == 0.25 ? radius : radius - radius * Math.cos(fraction * radian_multiplier);
+      var curve = "";
+
+      if (fraction > 0.5) {
+        curve += "A " + radius + " " + radius + " 0 0 1 " + radius * 2 + " " + radius + " ";
+      }
+
+      if (fraction > 0.75) {
+        curve += "A " + radius + " " + radius + " 0 0 1 0 " + radius + " ";
+      }
+
+      curve += "A " + radius + " " + radius + " 0 0 1 " + x + " " + y + " ";
+      var start = "M " + radius + " 0 ";
+      var line = "L " + radius + " " + radius + " ";
+      var path = start + curve + line + "Z";
+      this.data[i].path = path;
+      this.data[i].rotation = rotation;
+      rotation += fraction * 360;
+    }
   }
+
 };
 
 function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -159,6 +206,150 @@ var __vue_render__ = function () {
 
   var _c = _vm._self._c || _h;
 
+  return _c('div', {
+    staticClass: "gc-container",
+    attrs: {
+      "id": "gc-container"
+    }
+  }, [_c('svg', {
+    staticClass: "gc-pie",
+    attrs: {
+      "width": _vm.box_size,
+      "height": _vm.box_size,
+      "viewBox": '0 0 ' + _vm.box_size + ' ' + _vm.box_size
+    }
+  }, [_vm._l(_vm.data, function (item, i) {
+    return _c('path', {
+      class: 'gc-piece gc-color-' + (i % 6 + 1),
+      attrs: {
+        "d": item.path,
+        "transform": 'translate(' + _vm.padding + ',' + _vm.padding + ') rotate(' + item.rotation + ' ' + _vm.size / 2 + ' ' + _vm.size / 2 + ')'
+      }
+    });
+  }), _vm._v(" "), _c('circle', {
+    staticClass: "gc-pie-inner",
+    attrs: {
+      "cx": _vm.size / 2 + _vm.padding,
+      "cy": _vm.size / 2 + _vm.padding,
+      "r": _vm.cutout
+    }
+  })], 2), _vm._v(" "), _vm._l(_vm.data, function (item, j) {
+    return _c('div', {
+      class: 'gc-text gc-color-' + (j % 6 + 1)
+    }, [_vm._v("\n    " + _vm._s(item.name) + " (" + _vm._s(item.total) + ")\n  ")]);
+  })], 2);
+};
+
+var __vue_staticRenderFns__ = [];
+/* style */
+
+const __vue_inject_styles__ = undefined;
+/* scoped */
+
+const __vue_scope_id__ = undefined;
+/* module identifier */
+
+const __vue_module_identifier__ = undefined;
+/* functional template */
+
+const __vue_is_functional_template__ = false;
+/* style inject */
+
+/* style inject SSR */
+
+/* style inject shadow dom */
+
+const __vue_component__ = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__,
+  staticRenderFns: __vue_staticRenderFns__
+}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var script$1 = {
+  props: {
+    links: {
+      default: () => []
+    },
+    side: {
+      default: "left",
+
+      validator(x) {
+        return ["left", "right"].indexOf(x) !== -1;
+      }
+
+    },
+    buttonStyleHamburger: {
+      default: "auto",
+
+      validator(x) {
+        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
+      }
+
+    },
+    buttonStyleX: {
+      default: "auto",
+
+      validator(x) {
+        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
+      }
+
+    }
+  },
+
+  data() {
+    return {
+      visible: false
+    };
+  },
+
+  methods: {
+    linkDisplay(link) {
+      return link.replace("_", " ");
+    },
+
+    toggleMenu() {
+      this.visible = !this.visible;
+    }
+
+  }
+};
+
+/* script */
+const __vue_script__$1 = script$1;
+/* template */
+
+var __vue_render__$1 = function () {
+  var _vm = this;
+
+  var _h = _vm.$createElement;
+
+  var _c = _vm._self._c || _h;
+
   return _c('div', [_c('div', {
     staticClass: "lemon-graphic-button",
     on: {
@@ -198,7 +389,7 @@ var __vue_render__ = function () {
   })], 2)]);
 };
 
-var __vue_staticRenderFns__ = [function () {
+var __vue_staticRenderFns__$1 = [function () {
   var _vm = this;
 
   var _h = _vm.$createElement;
@@ -213,30 +404,31 @@ var __vue_staticRenderFns__ = [function () {
 }];
 /* style */
 
-const __vue_inject_styles__ = undefined;
+const __vue_inject_styles__$1 = undefined;
 /* scoped */
 
-const __vue_scope_id__ = undefined;
+const __vue_scope_id__$1 = undefined;
 /* module identifier */
 
-const __vue_module_identifier__ = undefined;
+const __vue_module_identifier__$1 = undefined;
 /* functional template */
 
-const __vue_is_functional_template__ = false;
+const __vue_is_functional_template__$1 = false;
 /* style inject */
 
 /* style inject SSR */
 
 /* style inject shadow dom */
 
-const __vue_component__ = /*#__PURE__*/normalizeComponent({
-  render: __vue_render__,
-  staticRenderFns: __vue_staticRenderFns__
-}, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, false, undefined, undefined, undefined);
+const __vue_component__$1 = /*#__PURE__*/normalizeComponent({
+  render: __vue_render__$1,
+  staticRenderFns: __vue_staticRenderFns__$1
+}, __vue_inject_styles__$1, __vue_script__$1, __vue_scope_id__$1, __vue_is_functional_template__$1, __vue_module_identifier__$1, false, undefined, undefined, undefined);
 
 var components = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  LemonMenuSlide: __vue_component__
+  LemonGraphCircle: __vue_component__,
+  LemonMenuSlide: __vue_component__$1
 });
 
 // Import vue components
@@ -255,4 +447,4 @@ const plugin = {
 }; // To auto-install on non-es builds, when vue is found
 
 export default plugin;
-export { __vue_component__ as LemonMenuSlide };
+export { __vue_component__ as LemonGraphCircle, __vue_component__$1 as LemonMenuSlide };

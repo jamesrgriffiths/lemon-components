@@ -14,5 +14,13 @@ $lemon-bg-secondary-dark:       #343A40 !default;
 $lemon-graphic-button-size:     24px    !default;
 $lemon-graphic-button-features: 3px     !default;
 
+// GraphCircle
+$lemon-gc-color-1:              #2060EE !default;
+$lemon-gc-color-2:              #00DA25 !default;
+$lemon-gc-color-3:              #BA00BA !default;
+$lemon-gc-color-4:              #ED103A !default;
+$lemon-gc-color-5:              #FA8F3A !default;
+$lemon-gc-color-6:              #FCE33F !default;
+
 // MenuSlide
 $lemon-ms-menu-width:           300px   !default; // For compatability with small devices don't set this above 320px, or use a percentage.

@@ -1,10 +1,11 @@
 <script>
 import Vue from 'vue';
-import { LemonMenuSlide } from '@/entry';
+import { LemonGraphCircle, LemonMenuSlide } from '@/entry';
 
 export default Vue.extend({
   name: 'ServeDev',
   components: {
+    LemonGraphCircle,
     LemonMenuSlide
   }
 });
@@ -13,6 +14,10 @@ export default Vue.extend({
 <template>
   <div id="app">
     <lemon-menu-slide side="left" buttonStyleHamburger="light" buttonStyleX="light" :links="[{'display': 'A IS hERe','value': 'a'},'user_access','logout']" />
+    <lemon-graph-circle
+      :data="[{'name': 'United States', 'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8}]"
+      :limit="11"
+      :cutout="80" />
   </div>
 </template>
 
