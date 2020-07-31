@@ -1,0 +1,51 @@
+.gc-color-1 { fill: $lemon-gc-color-1; color: $lemon-gc-color-1; }
+.gc-color-2 { fill: $lemon-gc-color-2; color: $lemon-gc-color-2; }
+.gc-color-3 { fill: $lemon-gc-color-3; color: $lemon-gc-color-3; }
+.gc-color-4 { fill: $lemon-gc-color-4; color: $lemon-gc-color-4; }
+.gc-color-5 { fill: $lemon-gc-color-5; color: $lemon-gc-color-5; }
+.gc-color-6 { fill: $lemon-gc-color-6; color: $lemon-gc-color-6; }
+
+.gc-container {
+  display: inline-block;
+  text-align: center;
+  background-color: $lemon-bg-secondary;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.gc-pie {
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.gc-pie-inner {
+  fill: $lemon-bg-secondary;
+}
+
+.gc-piece {
+  stroke: $lemon-bg-secondary;
+  stroke-width: 3px;
+}
+
+.gc-text {
+  display: inline-block;
+  text-align: left;
+  width: 50%;
+}
+
+@media(prefers-color-scheme: dark) {
+
+  .gc-container {
+    background-color: $lemon-bg-secondary-dark;
+  }
+
+  .gc-pie-inner {
+    fill: $lemon-bg-secondary-dark;
+  }
+
+  .gc-piece {
+    stroke: $lemon-bg-secondary-dark;
+  }
+
+}
