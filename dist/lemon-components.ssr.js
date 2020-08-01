@@ -139,7 +139,7 @@ var script = {
         'name': 'Other',
         'total': other_total
       });
-    } // Set the sizing of each item
+    } // Set the sizing and color of each item
 
 
     var radius = this.size / 2;
@@ -167,6 +167,7 @@ var script = {
       this.data[i].path = path;
       this.data[i].rotation = rotation;
       rotation += fraction * 360;
+      this.data[i].color_class = 'gc-color-' + (i % 30 + 1);
     }
   }
 };function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
@@ -255,13 +256,14 @@ var __vue_render__ = function __vue_render__() {
 
   return _c('div', {
     staticClass: "gc-container",
+    style: 'width: ' + _vm.box_size + 'px',
     attrs: {
       "id": "gc-container"
     }
-  }, [_vm._ssrNode("<svg" + _vm._ssrAttr("width", _vm.box_size) + _vm._ssrAttr("height", _vm.box_size) + _vm._ssrAttr("viewBox", '0 0 ' + _vm.box_size + ' ' + _vm.box_size) + " class=\"gc-pie\">" + _vm._ssrList(_vm.data, function (item, i) {
-    return "<path" + _vm._ssrAttr("d", item.path) + _vm._ssrAttr("transform", 'translate(' + _vm.padding + ',' + _vm.padding + ') rotate(' + item.rotation + ' ' + _vm.size / 2 + ' ' + _vm.size / 2 + ')') + _vm._ssrClass(null, 'gc-piece gc-color-' + (i % 6 + 1)) + "></path>";
-  }) + " <circle" + _vm._ssrAttr("cx", _vm.size / 2 + _vm.padding) + _vm._ssrAttr("cy", _vm.size / 2 + _vm.padding) + _vm._ssrAttr("r", _vm.cutout) + " class=\"gc-pie-inner\"></circle></svg> " + _vm._ssrList(_vm.data, function (item, j) {
-    return "<div" + _vm._ssrClass(null, 'gc-text gc-color-' + (j % 6 + 1)) + ">" + _vm._ssrEscape("\n    " + _vm._s(item.name) + " (" + _vm._s(item.total) + ")\n  ") + "</div>";
+  }, [_vm._ssrNode("<svg" + _vm._ssrAttr("width", _vm.box_size) + _vm._ssrAttr("height", _vm.box_size) + _vm._ssrAttr("viewBox", '0 0 ' + _vm.box_size + ' ' + _vm.box_size) + " class=\"gc-pie\">" + _vm._ssrList(_vm.data, function (item) {
+    return "<path" + _vm._ssrAttr("d", item.path) + _vm._ssrAttr("transform", 'translate(' + _vm.padding + ',' + _vm.padding + ') rotate(' + item.rotation + ' ' + _vm.size / 2 + ' ' + _vm.size / 2 + ')') + _vm._ssrClass(null, 'gc-piece ' + item.color_class) + "></path>";
+  }) + " <circle" + _vm._ssrAttr("cx", _vm.size / 2 + _vm.padding) + _vm._ssrAttr("cy", _vm.size / 2 + _vm.padding) + _vm._ssrAttr("r", _vm.cutout) + " class=\"gc-pie-inner\"></circle></svg> " + _vm._ssrList(_vm.data, function (item) {
+    return "<div" + _vm._ssrClass(null, 'gc-text ' + item.color_class) + ">" + _vm._ssrEscape("\n    " + _vm._s(item.name) + " (" + _vm._s(item.total) + ")\n  ") + "</div>";
   }))]);
 };
 
@@ -274,7 +276,7 @@ var __vue_inject_styles__ = undefined;
 var __vue_scope_id__ = undefined;
 /* module identifier */
 
-var __vue_module_identifier__ = "data-v-08703a80";
+var __vue_module_identifier__ = "data-v-59bd32af";
 /* functional template */
 
 var __vue_is_functional_template__ = false;
