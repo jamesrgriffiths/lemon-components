@@ -292,6 +292,7 @@ const __vue_component__ = /*#__PURE__*/normalizeComponent({
 //
 //
 //
+//
 var script$1 = {
   props: {
     links: {
@@ -385,7 +386,8 @@ var __vue_render__$1 = function () {
       staticClass: "ms-menu-item",
       class: link.display ? '' : 'capitalize',
       attrs: {
-        "href": link.value ? link.value : link
+        "href": link.value ? link.value : link,
+        "onclick": link.function ? 'event.preventDefault(); ' + link.function : ''
       }
     }, [_vm._v("\n      " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n    ")]);
   })], 2)]);
