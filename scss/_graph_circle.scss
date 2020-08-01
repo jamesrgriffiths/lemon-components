@@ -1,9 +1,25 @@
-.gc-color-1 { fill: $lemon-gc-color-1; color: $lemon-gc-color-1; }
-.gc-color-2 { fill: $lemon-gc-color-2; color: $lemon-gc-color-2; }
-.gc-color-3 { fill: $lemon-gc-color-3; color: $lemon-gc-color-3; }
-.gc-color-4 { fill: $lemon-gc-color-4; color: $lemon-gc-color-4; }
-.gc-color-5 { fill: $lemon-gc-color-5; color: $lemon-gc-color-5; }
-.gc-color-6 { fill: $lemon-gc-color-6; color: $lemon-gc-color-6; }
+@for $i from 0 through 4 {
+  $color-1: darken($lemon-gc-color-1,$i*15);
+  $color-2: darken($lemon-gc-color-2,$i*15);
+  $color-3: darken($lemon-gc-color-3,$i*15);
+  $color-4: darken($lemon-gc-color-4,$i*15);
+  $color-5: darken($lemon-gc-color-5,$i*15);
+  $color-6: darken($lemon-gc-color-6,$i*15);
+  @if($i % 2 == 1) {
+    $color-1: lighten($lemon-gc-color-1,$i*20);
+    $color-2: lighten($lemon-gc-color-2,$i*20);
+    $color-3: lighten($lemon-gc-color-3,$i*20);
+    $color-4: lighten($lemon-gc-color-4,$i*20);
+    $color-5: lighten($lemon-gc-color-5,$i*20);
+    $color-6: lighten($lemon-gc-color-6,$i*20);
+  }
+  .gc-color-#{($i*6)+1} { fill: $color-1; color: $color-1; }
+  .gc-color-#{($i*6)+2} { fill: $color-2; color: $color-2; }
+  .gc-color-#{($i*6)+3} { fill: $color-3; color: $color-3; }
+  .gc-color-#{($i*6)+4} { fill: $color-4; color: $color-4; }
+  .gc-color-#{($i*6)+5} { fill: $color-5; color: $color-5; }
+  .gc-color-#{($i*6)+6} { fill: $color-6; color: $color-6; }
+}
 
 .gc-container {
   display: inline-block;
@@ -29,9 +45,9 @@
 }
 
 .gc-text {
-  display: inline-block;
+  width: 100%;
   text-align: left;
-  width: 50%;
+  font-size: 12px;
 }
 
 @media(prefers-color-scheme: dark) {

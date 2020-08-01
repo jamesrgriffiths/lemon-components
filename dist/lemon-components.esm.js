@@ -87,7 +87,7 @@ var script = {
         'name': 'Other',
         'total': other_total
       });
-    } // Set the sizing of each item
+    } // Set the sizing and color of each item
 
 
     var radius = this.size / 2;
@@ -115,6 +115,7 @@ var script = {
       this.data[i].path = path;
       this.data[i].rotation = rotation;
       rotation += fraction * 360;
+      this.data[i].color_class = 'gc-color-' + (i % 30 + 1);
     }
   }
 
@@ -208,6 +209,7 @@ var __vue_render__ = function () {
 
   return _c('div', {
     staticClass: "gc-container",
+    style: 'width: ' + _vm.box_size + 'px',
     attrs: {
       "id": "gc-container"
     }
@@ -218,9 +220,9 @@ var __vue_render__ = function () {
       "height": _vm.box_size,
       "viewBox": '0 0 ' + _vm.box_size + ' ' + _vm.box_size
     }
-  }, [_vm._l(_vm.data, function (item, i) {
+  }, [_vm._l(_vm.data, function (item) {
     return _c('path', {
-      class: 'gc-piece gc-color-' + (i % 6 + 1),
+      class: 'gc-piece ' + item.color_class,
       attrs: {
         "d": item.path,
         "transform": 'translate(' + _vm.padding + ',' + _vm.padding + ') rotate(' + item.rotation + ' ' + _vm.size / 2 + ' ' + _vm.size / 2 + ')'
@@ -233,9 +235,9 @@ var __vue_render__ = function () {
       "cy": _vm.size / 2 + _vm.padding,
       "r": _vm.cutout
     }
-  })], 2), _vm._v(" "), _vm._l(_vm.data, function (item, j) {
+  })], 2), _vm._v(" "), _vm._l(_vm.data, function (item) {
     return _c('div', {
-      class: 'gc-text gc-color-' + (j % 6 + 1)
+      class: 'gc-text ' + item.color_class
     }, [_vm._v("\n    " + _vm._s(item.name) + " (" + _vm._s(item.total) + ")\n  ")]);
   })], 2);
 };

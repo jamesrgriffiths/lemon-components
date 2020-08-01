@@ -15,16 +15,16 @@
  -->
 <template>
 
-  <div class="gc-container" id="gc-container">
+  <div class="gc-container" id="gc-container" :style="'width: '+box_size+'px'">
 
     <svg  class="gc-pie" :width="box_size" :height="box_size" :viewBox="'0 0 '+box_size+' '+box_size">
-      <path v-for="(item,i) in data" :d="item.path"
+      <path v-for="item in data" :d="item.path"
         :transform="'translate('+padding+','+padding+') rotate('+(item.rotation)+' '+size/2+' '+size/2+')'"
-        :class="'gc-piece gc-color-'+((i%6)+1)"/>
+        :class="'gc-piece '+item.color_class"/>
       <circle :cx="(size/2)+padding" :cy="(size/2)+padding" :r="cutout" class="gc-pie-inner" />
     </svg>
 
-    <div v-for="(item,j) in data" :class="'gc-text gc-color-'+((j%6)+1)">
+    <div v-for="item in data" :class="'gc-text '+item.color_class">
       {{item.name}} ({{item.total}})
     </div>
 
@@ -72,7 +72,7 @@ export default {
       this.data.push({'name': 'Other', 'total': other_total});
     }
 
-    // Set the sizing of each item
+    // Set the sizing and color of each item
     var radius = this.size / 2;
     var radian_multiplier = 6.2831853;
     var width = 20;
@@ -93,6 +93,8 @@ export default {
       this.data[i].path = path;
       this.data[i].rotation = rotation;
       rotation += fraction * 360;
+
+      this.data[i].color_class = 'gc-color-'+((i%30)+1);
     }
 
   }
