@@ -1,6 +1,6 @@
 {
   "name": "lemon-components",
-  "version": "0.3.9",
+  "version": "0.3.10",
   "description": "",
   "author": "James Griffiths",
   "main": "src/entry.js",

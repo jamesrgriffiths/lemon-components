@@ -16,7 +16,8 @@
       <a class="ms-menu-item" :class="link.display ? '' : 'capitalize'"
         v-for="link in links"
         :key="link.value ? link.value : link"
-        :href="link.value ? link.value : link">
+        :href="link.value ? link.value : link"
+        :onclick="link.function ? 'event.preventDefault(); '+link.function : ''">
         {{link.display ? link.display : linkDisplay(link)}}
       </a>
     </div>
