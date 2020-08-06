@@ -1,25 +1,22 @@
 <template>
 
   <div>
-    <div class="lemon-graphic-button" @click="toggleMenu();">
-      <div :class="'lemon-graphic-button-'+buttonStyleHamburger+' lemon-graphic-button-hamburger-line1'">
-        <div class="lemon-graphic-button-hamburger-line2"><div class="lemon-graphic-button-hamburger-line3"></div></div>
-      </div>
-    </div>
-    <div class="ms-menu" :class="visible ? 'ms-menu-'+side+' ms-menu-'+side+'-visible' : 'ms-menu-'+side">
-      <div class="ms-menu-header">
-        <div class="lemon-graphic-button" @click="toggleMenu()">
-          <div :class="'lemon-graphic-button-'+buttonStyleX+' lemon-graphic-button-x-line1'"><div class="lemon-graphic-button-x-line2"></div></div>
-        </div>
+    <span :class="'lemon-icon-button-'+buttonStyleHamburger" @click="toggleMenu()"><i class="fas fa-bars"></i></span>
+    <div class="ms-menu" :class="class_side+' '+class_icons_only+' '+class_visible">
+      <div>
+        <span :class="'lemon-icon-button-'+buttonStyleX" @click="toggleMenu()"><i class="fas fa-times"></i></span>
       </div>
       <div class="lemon-accent-line"></div>
-      <a class="ms-menu-item" :class="link.display ? '' : 'capitalize'"
-        v-for="link in links"
-        :key="link.value ? link.value : link"
-        :href="link.value ? link.value : link"
-        :onclick="link.function ? 'event.preventDefault(); '+link.function : ''">
-        {{link.display ? link.display : linkDisplay(link)}}
-      </a>
+      <div v-for="link in links"
+        :class="'ms-icon-button lemon-icon-button-'+buttonStyleItem"
+        :onclick="link.function ? link.function : link.value ? 'window.location.href=\''+link.value+'\'' : 'window.location.href=\''+link+'\''">
+        <div v-if="showIcons" :class="'ms-icon-button-icon'"><i v-if="link.icon" :class="'fas '+link.icon"></i></div>
+        <span v-if="!onlyIcons" :class="link.display ? '' : 'capitalize'">
+          {{link.display ? link.display : linkDisplay(link)}}
+        </span>
+      </div>
+
+
     </div>
   </div>
 
@@ -33,6 +30,14 @@
         default: "left",
         validator(x) { return ["left","right"].indexOf(x) !== -1; }
       },
+      showIcons: {
+        default: true,
+        validator(x) { return [true,false].indexOf(x) !== -1; }
+      },
+      onlyIcons: {
+        default: false,
+        validator(x) { return [true,false].indexOf(x) !== -1; }
+      },
       buttonStyleHamburger: {
         default: "auto",
         validator(x) { return ["auto","invert","light","dark"].indexOf(x) !== -1; }
@@ -40,12 +45,20 @@
       buttonStyleX: {
         default: "auto",
         validator(x) { return ["auto","invert","light","dark"].indexOf(x) !== -1; }
-      }
+      },
+      buttonStyleItem: {
+        default: "auto",
+        validator(x) { return ["auto","invert","light","dark"].indexOf(x) !== -1; }
+      },
     },
 
     data() {
       return {
         visible: false,
+
+        class_side: 'ms-menu-'+this.side,
+        class_icons_only: this.onlyIcons ? 'ms-menu-'+this.side+'-icons-only' : '',
+        class_visible: this.visible ? 'ms-menu-'+this.side+'-visible' : '',
       }
     },
 
@@ -57,6 +70,7 @@
 
       toggleMenu() {
         this.visible = !this.visible;
+        this.class_visible = this.visible ? 'ms-menu-'+this.side+'-visible' : '';
       }
 
     }

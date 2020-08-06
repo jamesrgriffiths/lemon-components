@@ -290,9 +290,6 @@ const __vue_component__ = /*#__PURE__*/normalizeComponent({
 //
 //
 //
-//
-//
-//
 var script$1 = {
   props: {
     links: {
@@ -303,6 +300,22 @@ var script$1 = {
 
       validator(x) {
         return ["left", "right"].indexOf(x) !== -1;
+      }
+
+    },
+    showIcons: {
+      default: true,
+
+      validator(x) {
+        return [true, false].indexOf(x) !== -1;
+      }
+
+    },
+    onlyIcons: {
+      default: false,
+
+      validator(x) {
+        return [true, false].indexOf(x) !== -1;
       }
 
     },
@@ -321,12 +334,23 @@ var script$1 = {
         return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
       }
 
+    },
+    buttonStyleItem: {
+      default: "auto",
+
+      validator(x) {
+        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
+      }
+
     }
   },
 
   data() {
     return {
-      visible: false
+      visible: false,
+      class_side: 'ms-menu-' + this.side,
+      class_icons_only: this.onlyIcons ? 'ms-menu-' + this.side + '-icons-only' : '',
+      class_visible: this.visible ? 'ms-menu-' + this.side + '-visible' : ''
     };
   },
 
@@ -337,6 +361,7 @@ var script$1 = {
 
     toggleMenu() {
       this.visible = !this.visible;
+      this.class_visible = this.visible ? 'ms-menu-' + this.side + '-visible' : '';
     }
 
   }
@@ -353,59 +378,46 @@ var __vue_render__$1 = function () {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', [_c('div', {
-    staticClass: "lemon-graphic-button",
+  return _c('div', [_c('span', {
+    class: 'lemon-icon-button-' + _vm.buttonStyleHamburger,
     on: {
       "click": function ($event) {
         return _vm.toggleMenu();
       }
     }
-  }, [_c('div', {
-    class: 'lemon-graphic-button-' + _vm.buttonStyleHamburger + ' lemon-graphic-button-hamburger-line1'
-  }, [_vm._m(0)])]), _vm._v(" "), _c('div', {
+  }, [_c('i', {
+    staticClass: "fas fa-bars"
+  })]), _vm._v(" "), _c('div', {
     staticClass: "ms-menu",
-    class: _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side
-  }, [_c('div', {
-    staticClass: "ms-menu-header"
-  }, [_c('div', {
-    staticClass: "lemon-graphic-button",
+    class: _vm.class_side + ' ' + _vm.class_icons_only + ' ' + _vm.class_visible
+  }, [_c('div', [_c('span', {
+    class: 'lemon-icon-button-' + _vm.buttonStyleX,
     on: {
       "click": function ($event) {
         return _vm.toggleMenu();
       }
     }
-  }, [_c('div', {
-    class: 'lemon-graphic-button-' + _vm.buttonStyleX + ' lemon-graphic-button-x-line1'
-  }, [_c('div', {
-    staticClass: "lemon-graphic-button-x-line2"
-  })])])]), _vm._v(" "), _c('div', {
+  }, [_c('i', {
+    staticClass: "fas fa-times"
+  })])]), _vm._v(" "), _c('div', {
     staticClass: "lemon-accent-line"
   }), _vm._v(" "), _vm._l(_vm.links, function (link) {
-    return _c('a', {
-      key: link.value ? link.value : link,
-      staticClass: "ms-menu-item",
-      class: link.display ? '' : 'capitalize',
+    return _c('div', {
+      class: 'ms-icon-button lemon-icon-button-' + _vm.buttonStyleItem,
       attrs: {
-        "href": link.value ? link.value : link,
-        "onclick": link.function ? 'event.preventDefault(); ' + link.function : ''
+        "onclick": link.function ? link.function : link.value ? 'window.location.href=\'' + link.value + '\'' : 'window.location.href=\'' + link + '\''
       }
-    }, [_vm._v("\n      " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n    ")]);
+    }, [_vm.showIcons ? _c('div', {
+      class: 'ms-icon-button-icon'
+    }, [link.icon ? _c('i', {
+      class: 'fas ' + link.icon
+    }) : _vm._e()]) : _vm._e(), _vm._v(" "), !_vm.onlyIcons ? _c('span', {
+      class: link.display ? '' : 'capitalize'
+    }, [_vm._v("\n        " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n      ")]) : _vm._e()]);
   })], 2)]);
 };
 
-var __vue_staticRenderFns__$1 = [function () {
-  var _vm = this;
-
-  var _h = _vm.$createElement;
-
-  var _c = _vm._self._c || _h;
-
-  return _c('div', {
-    staticClass: "lemon-graphic-button-hamburger-line2"
-  }, [_c('div', {
-    staticClass: "lemon-graphic-button-hamburger-line3"
-  })]);
-}];
+var __vue_staticRenderFns__$1 = [];
 /* style */
 
 const __vue_inject_styles__$1 = undefined;

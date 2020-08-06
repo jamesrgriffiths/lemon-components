@@ -8,59 +8,58 @@
   border-bottom: 3px solid $lemon-accent;
 }
 
-.lemon-graphic-button {
+.lemon-icon-button {
   display: inline-block;
-  height: $lemon-graphic-button-size;
   cursor: pointer;
-}
-.lemon-graphic-button-line {
-  width: $lemon-graphic-button-size;
-  height: $lemon-graphic-button-features;
-  border-radius: $lemon-graphic-button-features;
-}
-
-.lemon-graphic-button-auto, .lemon-graphic-button-light {
-  background-color: $lemon-primary;
-  :hover > & { background-color: darken($lemon-primary,5) }
-}
-.lemon-graphic-button-invert, .lemon-graphic-button-dark {
-  background-color: $lemon-primary-dark;
-  :hover > & { background-color: darken($lemon-primary-dark,5) }
+  width: $lemon-icon-button-container;
+  height: $lemon-icon-button-container;
+  margin: 5px 10px;
+  padding: 0 5px;
+  line-height: $lemon-icon-button-container;
+  text-align: center;
+  font-size: $lemon-icon-button-size;
+  border-radius: 3px;
 }
 
-.lemon-graphic-button-hamburger-line1 {
-  @extend .lemon-graphic-button-line;
-  transform: translateY(($lemon-graphic-button-size - ($lemon-graphic-button-features * 3)) / 4);
+.lemon-icon-button-auto, .lemon-icon-button-light {
+  @extend .lemon-icon-button;
+  color: $lemon-primary;
 }
-.lemon-graphic-button-hamburger-line2 {
-  @extend .lemon-graphic-button-line;
-  background-color: inherit;
-  transform: translateY((($lemon-graphic-button-size - ($lemon-graphic-button-features * 3)) / 4) + $lemon-graphic-button-features);
-}
-.lemon-graphic-button-hamburger-line3 {
-  @extend .lemon-graphic-button-line;
-  background-color: inherit;
-  transform: translateY((($lemon-graphic-button-size - ($lemon-graphic-button-features * 3)) / 4) + $lemon-graphic-button-features);
+.lemon-icon-button-auto:hover, .lemon-icon-button-light:hover {
+  color: $lemon-bg-primary;
+  background-color: lighten($lemon-primary,10);
+  box-shadow: 0 0 4px 1px rgba(100,100,100,0.2);
 }
 
-.lemon-graphic-button-x-line1 {
-  @extend .lemon-graphic-button-line;
-  transform: translateY($lemon-graphic-button-size/2) rotate(45deg);
+.lemon-icon-button-invert, .lemon-icon-button-dark {
+  @extend .lemon-icon-button;
+  color: $lemon-primary-dark;
 }
-.lemon-graphic-button-x-line2 {
-  @extend .lemon-graphic-button-line;
-  background-color: inherit;
-  transform: rotate(90deg);
+.lemon-icon-button-invert:hover, .lemon-icon-button-dark:hover {
+  color: $lemon-bg-primary-dark;
+  background-color: lighten($lemon-primary-dark,10);
+  box-shadow: 0 0 4px 1px rgba(100,100,100,0.2);
 }
 
 // Dark Mode
 @media(prefers-color-scheme: dark) {
-  .lemon-graphic-button-auto {
-    background-color: $lemon-primary-dark;
-    :hover > & { background-color: darken($lemon-primary-dark,5) }
+
+  .lemon-icon-button-auto {
+    color: $lemon-primary-dark;
   }
-  .lemon-graphic-button-invert {
-    background-color: $lemon-primary;
-    :hover > & { background-color: darken($lemon-primary,5) }
+  .lemon-icon-button-auto:hover {
+    color: $lemon-bg-primary-dark;
+    background-color: lighten($lemon-primary-dark,10);
+    box-shadow: 0 0 4px 1px rgba(100,100,100,0.2);
   }
+
+  .lemon-icon-button-invert {
+    color: $lemon-primary;
+  }
+  .lemon-icon-button-invert:hover {
+    color: $lemon-bg-primary;
+    background-color: lighten($lemon-primary,10);
+    box-shadow: 0 0 4px 1px rgba(100,100,100,0.2);
+  }
+
 }
