@@ -1,3 +1,18 @@
+<!--
+  Creates a navigation menu that slides out of the side of the screen based on the following parameters:
+  links - (REQUIRED) This can either be an array of strings or objects.
+    - A string in this array will be used for both the display and link (the display will be formatted to remove underscores and capitalize)
+    - An object in the array should have the following: display, value
+    - An object in the array can have the following: icon (the class name of the fontawesome icon to use), function (javascript code to run instead of using a link)
+  side - (OPTIONAL - DEFAULT left, OPTIONS [left,right]) The side the menu will slide out from.
+  showIcons (show-icons) - (OPTIONAL - DEFAULT true, OPTIONS [true,false]) Whether or not to show the passed in icons.
+  onlyIcons (only-icons) - (OPTIONAL - DEFAULT false, OPTIONS [true,false]) Whether or not to only show the passed in icons. will change the size of the menu.
+
+  **The following options are for determining the dark/light mode of various buttons***
+  buttonStyleHamburger (button-style-hamburger) - (OPTIONAL - DEFUALT auto, OPTIONS [auto,invert,light,dark])
+  buttonStyleX (button-style-x) - (OPTIONAL - DEFUALT auto, OPTIONS [auto,invert,light,dark])
+  buttonStyleItem (button-style-item) - (OPTIONAL - DEFUALT auto, OPTIONS [auto,invert,light,dark])
+ -->
 <template>
 
   <div>

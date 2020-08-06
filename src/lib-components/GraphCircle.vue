@@ -1,17 +1,10 @@
 <!--
   Graphs a circle or pie chart based on the following parameters:
-  data - (REQUIRED) This should be an array of data objects each with a name and
-    total property.
-  limit - (OPTIONAL - DEFAULT 10) Set this to a number greater than 1
-    representing the total number of data fields to display. If there are more
-    fields than this limit the remaining fields will be combined into "Other".
-  size - (OPTIONAL - DEFAULT 200) Set this to a number representing the width
-    and height of the graph. Note that this along with the padding make up the
-    total width and height of the component - the display of some of the fields
-    can also effect the overall size.
-  padding - (OPTIONAL - DEFAULT 10) Set this to a number represennting the amount
-    of padding around the actual graph.
-  cutout - (OPTIONAL - DEFAULT 0) Set to the amount to cut out the chart by.
+  data - (REQUIRED) This should be an array of objects with the following: name, total
+  limit - (OPTIONAL - DEFAULT 10) This will limit how many data points are shown. Remaining points are summed into an other field.
+  size - (OPTIONAL - DEFAULT 200) This is the size of the actual graph (width and height), not the entire component.
+  padding - (OPTIONAL - DEFAULT 10) This provides space on all sides around the graph.
+  cutout - (OPTIONAL - DEFAULT 0) This represents the radius of a circle to draw in the center, turning a pie chart into a circle chart.
  -->
 <template>
 
