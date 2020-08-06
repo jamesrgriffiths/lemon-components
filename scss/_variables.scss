@@ -1,26 +1,27 @@
 // Colors
-$lemon-primary:                 #1080DD !default;
-$lemon-secondary:               #4A4B4D !default;
-$lemon-accent:                  #FF9B42 !default;
-$lemon-bg-primary:              #FAFDFD !default;
-$lemon-bg-secondary:            #F5F7F9 !default;
+$lemon-primary:                   #1080DD                       !default;
+$lemon-secondary:                 #4A4B4D                       !default;
+$lemon-accent:                    #FF9B42                       !default;
+$lemon-bg-primary:                #FAFDFD                       !default;
+$lemon-bg-secondary:              #F5F7F9                       !default;
 
-$lemon-primary-dark:            #FAFBFF !default;
-$lemon-secondary-dark:          #A9ABAD !default;
-$lemon-bg-primary-dark:         #292A2D !default;
-$lemon-bg-secondary-dark:       #343A40 !default;
+$lemon-primary-dark:              #FAFBFF                       !default;
+$lemon-secondary-dark:            #A9ABAD                       !default;
+$lemon-bg-primary-dark:           #292A2D                       !default;
+$lemon-bg-secondary-dark:         #343A40                       !default;
 
 // Sizing
-$lemon-graphic-button-size:     24px    !default;
-$lemon-graphic-button-features: 3px     !default;
+$lemon-icon-button-container:     45px                          !default;
+$lemon-icon-button-size:          20px                          !default;
 
 // GraphCircle
-$lemon-gc-color-1:              #2060EE !default;
-$lemon-gc-color-2:              #00DA25 !default;
-$lemon-gc-color-3:              #BA00BA !default;
-$lemon-gc-color-4:              #ED103A !default;
-$lemon-gc-color-5:              #FA8F3A !default;
-$lemon-gc-color-6:              #FCE33F !default;
+$lemon-gc-color-1:                #2060EE                       !default;
+$lemon-gc-color-2:                #00DA25                       !default;
+$lemon-gc-color-3:                #BA00BA                       !default;
+$lemon-gc-color-4:                #ED103A                       !default;
+$lemon-gc-color-5:                #FA8F3A                       !default;
+$lemon-gc-color-6:                #FCE33F                       !default;
 
 // MenuSlide
-$lemon-ms-menu-width:           300px   !default; // For compatability with small devices don't set this above 320px, or use a percentage.
+$lemon-ms-menu-width:             200px                         !default; // For compatability with small devices don't set this above 320px, or use a percentage.
+$lemon-ms-menu-icon-only-width:   75px                          !default; // Should be 30px more than $lemon-ms-icon-button-container by default.

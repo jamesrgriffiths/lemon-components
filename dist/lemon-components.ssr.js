@@ -313,9 +313,6 @@ var __vue_component__ = /*#__PURE__*/normalizeComponent({
 //
 //
 //
-//
-//
-//
 var script$1 = {
   props: {
     links: {
@@ -329,6 +326,18 @@ var script$1 = {
         return ["left", "right"].indexOf(x) !== -1;
       }
     },
+    showIcons: {
+      default: true,
+      validator: function validator(x) {
+        return [true, false].indexOf(x) !== -1;
+      }
+    },
+    onlyIcons: {
+      default: false,
+      validator: function validator(x) {
+        return [true, false].indexOf(x) !== -1;
+      }
+    },
     buttonStyleHamburger: {
       default: "auto",
       validator: function validator(x) {
@@ -340,11 +349,20 @@ var script$1 = {
       validator: function validator(x) {
         return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
       }
+    },
+    buttonStyleItem: {
+      default: "auto",
+      validator: function validator(x) {
+        return ["auto", "invert", "light", "dark"].indexOf(x) !== -1;
+      }
     }
   },
   data: function data() {
     return {
-      visible: false
+      visible: false,
+      class_side: 'ms-menu-' + this.side,
+      class_icons_only: this.onlyIcons ? 'ms-menu-' + this.side + '-icons-only' : '',
+      class_visible: this.visible ? 'ms-menu-' + this.side + '-visible' : ''
     };
   },
   methods: {
@@ -353,6 +371,7 @@ var script$1 = {
     },
     toggleMenu: function toggleMenu() {
       this.visible = !this.visible;
+      this.class_visible = this.visible ? 'ms-menu-' + this.side + '-visible' : '';
     }
   }
 };/* script */
@@ -366,8 +385,8 @@ var __vue_render__$1 = function __vue_render__() {
 
   var _c = _vm._self._c || _h;
 
-  return _c('div', [_vm._ssrNode("<div class=\"lemon-graphic-button\"><div" + _vm._ssrClass(null, 'lemon-graphic-button-' + _vm.buttonStyleHamburger + ' lemon-graphic-button-hamburger-line1') + "><div class=\"lemon-graphic-button-hamburger-line2\"><div class=\"lemon-graphic-button-hamburger-line3\"></div></div></div></div> <div" + _vm._ssrClass("ms-menu", _vm.visible ? 'ms-menu-' + _vm.side + ' ms-menu-' + _vm.side + '-visible' : 'ms-menu-' + _vm.side) + "><div class=\"ms-menu-header\"><div class=\"lemon-graphic-button\"><div" + _vm._ssrClass(null, 'lemon-graphic-button-' + _vm.buttonStyleX + ' lemon-graphic-button-x-line1') + "><div class=\"lemon-graphic-button-x-line2\"></div></div></div></div> <div class=\"lemon-accent-line\"></div> " + _vm._ssrList(_vm.links, function (link) {
-    return "<a" + _vm._ssrAttr("href", link.value ? link.value : link) + _vm._ssrAttr("onclick", link.function ? 'event.preventDefault(); ' + link.function : '') + _vm._ssrClass("ms-menu-item", link.display ? '' : 'capitalize') + ">" + _vm._ssrEscape("\n      " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n    ") + "</a>";
+  return _c('div', [_vm._ssrNode("<span" + _vm._ssrClass(null, 'lemon-icon-button-' + _vm.buttonStyleHamburger) + "><i class=\"fas fa-bars\"></i></span> <div" + _vm._ssrClass("ms-menu", _vm.class_side + ' ' + _vm.class_icons_only + ' ' + _vm.class_visible) + "><div><span" + _vm._ssrClass(null, 'lemon-icon-button-' + _vm.buttonStyleX) + "><i class=\"fas fa-times\"></i></span></div> <div class=\"lemon-accent-line\"></div> " + _vm._ssrList(_vm.links, function (link) {
+    return "<div" + _vm._ssrAttr("onclick", link.function ? link.function : link.value ? 'window.location.href=\'' + link.value + '\'' : 'window.location.href=\'' + link + '\'') + _vm._ssrClass(null, 'ms-icon-button lemon-icon-button-' + _vm.buttonStyleItem) + ">" + (_vm.showIcons ? "<div" + _vm._ssrClass(null, 'ms-icon-button-icon') + ">" + (link.icon ? "<i" + _vm._ssrClass(null, 'fas ' + link.icon) + "></i>" : "<!---->") + "</div>" : "<!---->") + " " + (!_vm.onlyIcons ? "<span" + _vm._ssrClass(null, link.display ? '' : 'capitalize') + ">" + _vm._ssrEscape("\n        " + _vm._s(link.display ? link.display : _vm.linkDisplay(link)) + "\n      ") + "</span>" : "<!---->") + "</div>";
   }) + "</div>")]);
 };
 
@@ -380,7 +399,7 @@ var __vue_inject_styles__$1 = undefined;
 var __vue_scope_id__$1 = undefined;
 /* module identifier */
 
-var __vue_module_identifier__$1 = "data-v-7027219a";
+var __vue_module_identifier__$1 = "data-v-6a9fbc09";
 /* functional template */
 
 var __vue_is_functional_template__$1 = false;

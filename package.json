@@ -1,6 +1,6 @@
 {
   "name": "lemon-components",
-  "version": "0.3.10",
+  "version": "0.4.1",
   "description": "",
   "author": "James Griffiths",
   "main": "src/entry.js",
@@ -20,6 +20,7 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2"
   },

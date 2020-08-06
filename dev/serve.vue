@@ -13,11 +13,18 @@ export default Vue.extend({
 
 <template>
   <div id="app">
-    <lemon-menu-slide side="left" buttonStyleHamburger="light" buttonStyleX="light" :links="[{'display': 'A IS hERe','value': 'a'},'user_access','logout']" />
-    <lemon-graph-circle
+    <lemon-menu-slide
+      :links="[
+        {'display':'Home','value':'home','icon':'fa-home'},
+        {'display':'Users','value':'users','icon':'fa-users'},
+        {'display':'Logout','value':'','icon':'fa-door-open','function':'document.getElementById(\'logout-form\').submit()'}]"
+      :show-icons="true"
+      :only-icons="true"
+       />
+    <!-- <lemon-graph-circle
       :data="[{'name': 'United States', 'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8},{'total':8}]"
       :limit="11"
-      :cutout="80" />
+      :cutout="80" /> -->
   </div>
 </template>
 
